@@ -22,6 +22,7 @@ module "app_instances" {
   vpc_id = each.value["vpc_id"]
   zone_id        = var.zone_id
 
+  domain_name = var.domain_name
 }
 
 module "web_instances" {
@@ -33,6 +34,7 @@ module "web_instances" {
   app_port = each.value["app_port"]
   instance_type = each.value["instance_type"]
   vpc_id = each.value["vpc_id"]
+  domain_name = var.domain_name
   zone_id        = var.zone_id
 
 }
