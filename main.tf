@@ -6,7 +6,7 @@ module "db_instances" {
   component_name = each.key
   app_port = each.value["app_port"]
   instance_type = each.value["instance_type"]
-  vpc_id = each.value["vpc_id"]
+  # vpc_id = each.value["vpc_id"]
   domain_name    = var.domain_name
   zone_id        = var.zone_id
 }
@@ -19,7 +19,7 @@ module "app_instances" {
   component_name = each.key
   app_port = each.value["app_port"]
   instance_type = each.value["instance_type"]
-  vpc_id = each.value["vpc_id"]
+  # vpc_id = each.value["vpc_id"]
   zone_id        = var.zone_id
 
   domain_name = var.domain_name
@@ -33,7 +33,7 @@ module "web_instances" {
   component_name = each.key
   app_port = each.value["app_port"]
   instance_type = each.value["instance_type"]
-  vpc_id = each.value["vpc_id"]
+  # vpc_id = each.value["vpc_id"]
   domain_name = var.domain_name
   zone_id        = var.zone_id
 
