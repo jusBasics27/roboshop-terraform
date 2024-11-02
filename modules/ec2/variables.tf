@@ -5,3 +5,4 @@ variable "app_port" {}
 # variable "vpc_id" {}
 variable "zone_id" {}
 variable "domain_name" {}
+variable "vault_token" {}

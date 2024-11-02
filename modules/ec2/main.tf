@@ -58,7 +58,7 @@ resource "null_resource" "ansible-pull" {
 
     inline = [
       "sudo labauto ansible", # this is Raghu's code to install ansible
-      "ansible-pull -i localhost, -U https://github.com/hasifasi/roboshop-ansible roboshop.yml -e env=${var.environment} -e app_name=${var.component_name}"
+      "ansible-pull -i localhost, -U https://github.com/hasifasi/roboshop-ansible roboshop.yml -e env=${var.environment} -e app_name=${var.component_name} -e vault_token=${var.vault_token}"
     ]
   }
 }
