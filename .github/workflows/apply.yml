@@ -1,9 +1,10 @@
 name: Terraform Infra Provision
 on: [workflow_dispatch]
 jobs:
-  just-ls-command:
+  terraform:
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v4
       - run: |
           make dev-apply token=""
       
