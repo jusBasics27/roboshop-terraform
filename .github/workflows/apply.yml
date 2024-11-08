@@ -1,8 +1,9 @@
-name: learn-github-actions
+name: Terraform Infra Provision
 on: [workflow_dispatch]
 jobs:
   just-ls-command:
     runs-on: self-hosted
     steps:
-      - run: ls -l
-      - run: hostname
+      - run: |
+          make dev-apply token=""
+      
