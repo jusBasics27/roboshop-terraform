@@ -35,6 +35,9 @@ resource "aws_instance" "inst" {
   tags={
     Name="${var.component_name}-${var.environment}"
   }
+  root_block_device {  # This is give the volume size of the machine like 20GB/40GB
+    volume_size = var.volume_size
+  }
 }
 
 # Above we created an ec2 instance and a security group for them, now to to deploy project in that newly created ec2 instance.
