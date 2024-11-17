@@ -38,6 +38,12 @@ resource "aws_instance" "inst" {
   root_block_device {  # This is give the volume size of the machine like 20GB/40GB
     volume_size = var.volume_size
   }
+  lifecycle {
+    ignore_changes = [
+      ami,
+    ]
+  }
+  # The lifecycle block with ignore_changes is used to tell Terraform to ignore specific changes to resource attributes, such as the ami in your case. This is helpful when you want to prevent Terraform from recreating a resource unnecessarily, even if some of its attributes change.
 }
 
 # Above we created an ec2 instance and a security group for them, now to to deploy project in that newly created ec2 instance.
@@ -51,6 +57,13 @@ resource "aws_instance" "inst" {
 # So its better to go with ansible-pull, by doing so we can use remote-exec and connect to the new instance created and then pull the code from github and run the ansible commands
 
 resource "null_resource" "ansible-pull" {
+
+  triggers = {
+    instance_id= aws_instance.inst.id
+  }
+  # this triggers block is used to recreate/update the resource whenever
+  #       new instance id is created
+
   provisioner "remote-exec" {
     connection {
       type     = "ssh"

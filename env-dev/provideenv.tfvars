@@ -77,5 +77,6 @@ web_instances = {
     app_port      = 80
     instance_type = "t3.small"
     # vpc_id="vpc-0e7361b299bf17582"
+    volume_size=20
   }
 }
