@@ -45,6 +45,6 @@ module "db_instances" {
 
 module "eks" {
   source = "./modules/eks"
-  environment=var.env
+  env=var.env
   subnet_ids = var.eks["subnet_ids"]
 }
