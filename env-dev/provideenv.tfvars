@@ -88,6 +88,18 @@ eks = {
     # coredns = {} -  removed becoz its not required
     kube-proxy  = {}
   }
+
+  access_entries= {
+    workstation = {
+      principal_arn = "arn:aws:iam::137068255381:role/wk-role"
+      kubernetes_groups = []
+      policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+      access_scope_type = "cluster"
+      access_scope_namespaces = []
+    }
+  }
+
+
   node_groups = {
     g1 = {
       desired_size = 1
