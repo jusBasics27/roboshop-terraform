@@ -31,7 +31,7 @@ resource "aws_eks_access_policy_association" "example" {
     type       = each.value["access_scope_type"]
     namespaces = each.value["access_scope_namespaces"]
   }
-
+}
 
 # resource "aws_eks_addon" "vpc-cni" {
 #   cluster_name = aws_eks_cluster.main.name
