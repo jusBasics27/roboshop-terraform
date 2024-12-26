@@ -87,6 +87,7 @@ eks = {
     vpc-cni = {}
     # coredns = {} -  removed becoz its not required
     kube-proxy  = {}
+    eks-pod-identity-agent = {}
   }
 
   access_entries= {
