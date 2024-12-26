@@ -1,6 +1,10 @@
+
+# This is to create the namespace 'devops' where nginx-ingress will have its own ns, so we do shell commands
+#         THe first command will allow you to use kubectl to interact with the cluster.
+#         The second command will create the namespace 'devops' if it doesn't exist.
 resource "null_resource" "kube-bootstrap" {
   depends_on = [aws_eks_cluster.main, aws_eks_node_group.main]
-  provisioner "local-exec" {
+  provisioner "local-exec" { #Executes shell commands locally on the machine running Terraform.
     command =<<EOF
 aws eks update-kubeconfig  --name ${var.env}-eks
 kubectl create ns devops
@@ -8,6 +12,7 @@ EOF
   }
 }
 
+# This is to install ingress controller called nginx Ingress
 resource "helm_release" "nginx-ingress" {
   depends_on = [null_resource.kube-bootstrap]
   chart = "oci://ghcr.io/nginxinc/charts/nginx-ingress"
@@ -21,7 +26,7 @@ resource "helm_release" "nginx-ingress" {
 }
 
 
-## External DNS
+## External DNS -   ExternalDNS makes Kubernetes resources discoverable via public DNS servers
 resource "helm_release" "external-dns" {
   depends_on = [null_resource.kube-bootstrap, helm_release.nginx-ingress]
 
