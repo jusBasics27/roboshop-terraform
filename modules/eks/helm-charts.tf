@@ -85,7 +85,7 @@ resource "helm_release" "external-secrets" {
   chart            = "external-secrets"
   namespace        = "devops"
   create_namespace = true
-  wait             = false
+  wait             = true
 }
 
 resource "null_resource" "external-secret" {
