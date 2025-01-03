@@ -76,7 +76,8 @@ resource "helm_release" "prom-stack" {
 
 }
 
-## External Secrets
+
+# External Secrets  -  This is required to collect the secrets from Vault or aws secrets manager and automatically injects the values as Kubernets secrets
 resource "helm_release" "external-secrets" {
   depends_on = [null_resource.kube-bootstrap]
 
@@ -99,7 +100,7 @@ kind: Secret
 metadata:
   name: vault-token
 data:
-  token: aHZzLk5xRDFreHZoTkxqQzhzYjBFYURQZG5pVg==
+  token: aHZzLnhoUXBuZXd2OVUzNDRXck9rbzZYM2c0Tw==
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
