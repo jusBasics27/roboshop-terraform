@@ -111,9 +111,9 @@ eks = {
 
   node_groups = {
     g1 = {
-      desired_size = 1
-      max_size     = 2
-      min_size     = 1
+      desired_size = 2
+      max_size     = 5
+      min_size     = 2
       capacity_type=  "SPOT"
       instance_types= ["t3.large"]
     }
