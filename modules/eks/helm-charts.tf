@@ -137,3 +137,22 @@ resource "helm_release" "filebeat" {
   ]
 
 }
+
+
+## Cluster Autoscaler
+resource "helm_release" "cluster-autoscaler" {
+  depends_on = [null_resource.kube-bootstrap, helm_release.nginx-ingress]
+
+  name             = "cluster-autoscaler"
+  repository       = "https://kubernetes.github.io/autoscaler"
+  chart            = "cluster-autoscaler"
+  namespace        = "devops"
+  create_namespace = true
+  wait             = false
+
+  set {
+    name  = "autoDiscovery.clusterName"
+    value = aws_eks_cluster.main.name
+  }
+
+}
