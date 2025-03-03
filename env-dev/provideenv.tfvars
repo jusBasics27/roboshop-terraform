@@ -119,3 +119,54 @@ eks = {
     }
   }
 }
+
+vpc = {
+  main = {
+    cidr_block = "10.0.0.0/24"
+    subnets = {
+      public-subnet-1 = {
+        cidr_block   = "10.0.0.0/27"
+        az           = "us-east-1a"
+        igw          = true
+        subnet_group = "public"
+      }
+      public-subnet-2 = {
+        cidr_block   = "10.0.0.32/27"
+        az           = "us-east-1b"
+        igw          = true
+        subnet_group = "public"
+      }
+      db-subnet-1 = {
+        cidr_block   = "10.0.0.64/27"
+        az           = "us-east-1a"
+        igw          = false
+        subnet_group = "db"
+      }
+      db-subnet-2 = {
+        cidr_block   = "10.0.0.96/27"
+        az           = "us-east-1b"
+        igw          = false
+        subnet_group = "db"
+      }
+      app-subnet-1 = {
+        cidr_block   = "10.0.0.128/26"
+        az           = "us-east-1a"
+        igw          = false
+        subnet_group = "app"
+      }
+      app-subnet-2 = {
+        cidr_block   = "10.0.0.192/26"
+        az           = "us-east-1b"
+        igw          = false
+        subnet_group = "app"
+      }
+    }
+  }
+
+}
+
+default_vpc = {
+  id          = "vpc-0e7361b299bf17582"
+  cidr        = "172.31.0.0/16"
+  route_table = "rtb-0b2eb53f49c56d03c"
+}
