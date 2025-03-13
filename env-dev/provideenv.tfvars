@@ -1,6 +1,7 @@
 env="dev"
 domain_name = "waferhassan.online"
 zone_id     = "Z0252555OF8RI2R4KATG"
+bastion_nodes = ["172.31.37.212/32", "172.31.90.159/32"]
 
 
 db_instances = {
@@ -9,6 +10,7 @@ db_instances = {
     instance_type = "t3.small"
     # vpc_id="vpc-0e7361b299bf17582"
     volume_size=20
+    allow_cidr=["10.0.0.128/26","10.0.0.192/26"]
   }
 
   redis = {
@@ -16,6 +18,7 @@ db_instances = {
     instance_type = "t3.small"
     # vpc_id="vpc-0e7361b299bf17582"
     volume_size=20
+    allow_cidr=["10.0.0.128/26","10.0.0.192/26"]
   }
 
   rabbitmq = {
@@ -23,6 +26,7 @@ db_instances = {
     instance_type = "t3.small"
     # vpc_id="vpc-0e7361b299bf17582"
     volume_size=20
+    allow_cidr=["10.0.0.128/26","10.0.0.192/26"]
   }
 
   mysql = {
@@ -30,6 +34,7 @@ db_instances = {
     instance_type = "t3.small"
     # vpc_id="vpc-0e7361b299bf17582"
     volume_size=20
+    allow_cidr=["10.0.0.128/26","10.0.0.192/26"]
   }
 }
 
@@ -82,7 +87,7 @@ web_instances = {
 }
 
 eks = {
-  subnet_ids = ["subnet-0eeecc495d4cd5f80","subnet-0d2fcd631f420bc93"]
+  # subnet_ids = ["subnet-0eeecc495d4cd5f80","subnet-0d2fcd631f420bc93"]
   addons={
     vpc-cni = {}
     # coredns = {} -  removed becoz its not required
@@ -92,7 +97,8 @@ eks = {
 
   access_entries= {
     workstation = {
-      principal_arn = "arn:aws:iam::137068255381:role/wk-role"
+      # principal_arn = "arn:aws:iam::137068255381:role/wk-role"
+      principal_arn = "arn:aws:iam::137068255381:role/github-runner-role"
       kubernetes_groups = []
       policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
       access_scope_type = "cluster"

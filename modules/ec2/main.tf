@@ -1,14 +1,16 @@
 resource "aws_security_group" "sg" {
   name        = "${var.component_name}-${var.environment}-sg"
   description = "Inbound allow for ${var.component_name}"
-  # vpc_id = var.vpc_id
+  vpc_id = var.vpc_id
 
   ingress {
     from_port        = 22
     to_port          = 22
     protocol         = "TCP"
-    cidr_blocks      = ["0.0.0.0/0"]
+    # cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = var.bastion_nodes
   }
+
 
   ingress {
     from_port        = var.app_port
@@ -22,7 +24,8 @@ resource "aws_security_group" "sg" {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    # cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = var.allow_cidr
   }
 }
 
@@ -30,6 +33,7 @@ resource "aws_instance" "inst" {
   ami=data.aws_ami.ami.id
   instance_type=var.instance_type
   # subnet_id = "subnet-03ad7ee1155f25700"
+  subnet_id   = var.subnet_id
   vpc_security_group_ids=[aws_security_group.sg.id]
   # associate_public_ip_address = true
   tags={
