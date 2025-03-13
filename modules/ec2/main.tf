@@ -16,7 +16,8 @@ resource "aws_security_group" "sg" {
     from_port        = var.app_port
     to_port          = var.app_port
     protocol         = "TCP"
-    cidr_blocks      = ["0.0.0.0/0"]
+    # cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = var.allow_cidr
   }
 
 
@@ -24,8 +25,8 @@ resource "aws_security_group" "sg" {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
-    # cidr_blocks      = ["0.0.0.0/0"]
-    cidr_blocks      = var.allow_cidr
+    cidr_blocks      = ["0.0.0.0/0"]
+
   }
 }
 
