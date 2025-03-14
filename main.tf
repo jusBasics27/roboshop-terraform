@@ -73,3 +73,7 @@ module "eks" {
 # output "aut"  {
 #   value = module.eks
 # }
+
+output "vpc_id" {
+  value = lookup(module.vpc, "main", null)
+}
